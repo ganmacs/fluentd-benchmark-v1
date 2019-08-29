@@ -1,0 +1,26 @@
+#!/bin/bash
+
+DURATION=200
+
+echo '[in_forward rate=10000]'
+RATE=10000 ./run_benchmark in_forward
+echo '[in_forward rate=50000]'
+RATE=50000 ./run_benchmark in_forward
+echo '[out_forward rate=10000]'
+RATE=10000 ./run_benchmark out_forward
+echo '[out_forward rate=50000]'
+RATE=50000 ./run_benchmark out_forward
+
+echo '[buffer rate=10000 type=memory]'
+RATE=10000 TYPE=memory ./run_benchmark buffer
+echo '[buffer rate=10000 type=file_single]'
+RATE=10000 TYPE=file ./run_benchmark buffer
+echo '[buffer rate=10000 type=file]'
+RATE=10000 TYPE=file_single ./run_benchmark buffer
+
+echo '[buffer rate=50000 type=memory]'
+RATE=50000 TYPE=file ./run_benchmark buffer
+echo '[buffer rate=50000 type=file_single]'
+RATE=50000 TYPE=file ./run_benchmark buffer
+echo '[buffer rate=50000 type=file]'
+RATE=50000 TYPE=file_single ./run_benchmark buffer

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dummer:
+    build:
+      context: ./dummer
+    image: dummer:1
+    environment:
+      - RATE
+    depends_on:
+      - target
+  target:
+    build: in_forward
+    image: in_forward:1

@@ -1,0 +1,18 @@
+<source>
+  @type forward
+  port 24224
+</source>
+
+<match dummer>
+  @type flowcounter_simple2
+  unit second
+
+  <buffer>
+    @type {{ var "TYPE" | default "memory" }}
+    path . # ignored if type is memory
+    flush_interval 0
+    chunk_limit_records 640
+    chunk_limit_size 1m
+    flush_thread_count 32
+  </buffer>
+</match>

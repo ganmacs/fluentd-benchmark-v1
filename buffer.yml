@@ -1,0 +1,15 @@
+version: '3'
+services:
+  dummer:
+    build:
+      context: ./dummer
+    image: dummer:1
+    depends_on:
+      - target
+    environment:
+      - RATE
+  target:
+    build: buffer
+    image: buffer:1
+    environment:
+      - TYPE

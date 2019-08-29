@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+SED="sed"
+HEAD="head"
+DURATION=120
+
+[ "$(uname -s)" == "Darwin" ] && SED=gsed
+[ "$(uname -s)" == "Darwin" ] && HEAD=ghead
+
+if [ -z "$1" ] || [ ! -f "$1.yml" ]; then
+  cat << EOS
+Usage:
+  $0 testsuite
+
+  Available testsuites:
+EOS
+  find . -name "./\*.yml" | $SED -e 's/\.yml$//' | sort
+  exit 1
+else
+  BENCHMARK=$1
+fi
+
+mkdir -p ./log
+
+exithandler() {
+    echo 'finish'
+  docker-compose -f "${BENCHMARK}.yml" stop
+  # kill 0 # all child processes
+}
+trap exithandler EXIT
+trap exithandler SIGINT
+trap exithandler SIGTERM
+
+echo "Starting docker containers ..."
+
+docker-compose -f "${BENCHMARK}.yml" up --build > "./log/${BENCHMARK}.out" 2> "./log/${BENCHMARK}.err" &
+
+echo "Start benchmark. Wait for ${DURATION} sec ..."
+sleep $DURATION
+
+docker-compose -f "${BENCHMARK}.yml" stop > /dev/null 2>&1
+echo "finished..."
+
+if type ruby > /dev/null 2>&1; then
+  cat "./log/${BENCHMARK}.out" | grep 'flowcounter_simple2_total' | ruby -e 'puts STDIN.read.slice(/flowcounter_simple2_total.*/).split("\t")[1..-1]' | head
+else
+  cat "./log/${BENCHMARK}.out" | grep 'flowcounter_simple2_total'
+fi
