@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'fluentd', '~> 1.7.0'
+gem 'fluentd', github: 'fluent/fluentd'
 gem 'fluent-plugin-flowcounter-simple2', github: 'ganmacs/fluent-plugin-flowcounter-simple2'
