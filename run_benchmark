@@ -38,7 +38,7 @@ echo "Starting docker containers ..."
 
 $NO_CACHE && echo "rebuilding docker image..." && docker-compose -f "${BENCHMARK}.yml" build --no-cache > /dev/null 2>&1
 
-docker-compose -f "${BENCHMARK}.yml" up >> "./log/${BENCHMARK}.out" 2> "./log/${BENCHMARK}.err" &
+docker-compose -f "${BENCHMARK}.yml" up > "./log/${BENCHMARK}.out" 2> "./log/${BENCHMARK}.err" &
 echo "Start benchmark. Wait for ${DURATION} sec ..."
 sleep $DURATION
 

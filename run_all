@@ -6,6 +6,8 @@ DURATION=${DURATION:-120}
 RATE1=${RATE1:-1000}
 RATE2=${RATE2:-10000}
 
+rm -rf ./data
+
 echo "[in_forward rate=${RATE1}]"
 RATE=${RATE1} ./run_benchmark in_forward
 echo "[in_forward rate=${RATE2}]"
