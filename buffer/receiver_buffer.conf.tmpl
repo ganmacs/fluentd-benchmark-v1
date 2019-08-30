@@ -6,6 +6,7 @@
 <match dummer>
   @type flowcounter_simple2
   unit second
+  dump_file_path /var/log/flunetd_stats/buffer_{{ var "TYPE" | default "memory" }}.json
 
   <buffer>
     @type {{ var "TYPE" | default "memory" }}

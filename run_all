@@ -1,26 +1,30 @@
 #!/bin/bash
 
-DURATION=200
+set -e
 
-echo '[in_forward rate=10000]'
-RATE=10000 ./run_benchmark in_forward
-echo '[in_forward rate=50000]'
-RATE=50000 ./run_benchmark in_forward
-echo '[out_forward rate=10000]'
-RATE=10000 ./run_benchmark out_forward
-echo '[out_forward rate=50000]'
-RATE=50000 ./run_benchmark out_forward
+DURATION=${DURATION:-120}
+RATE1=${RATE1:-1000}
+RATE2=${RATE2:-10000}
 
-echo '[buffer rate=10000 type=memory]'
-RATE=10000 TYPE=memory ./run_benchmark buffer
-echo '[buffer rate=10000 type=file_single]'
-RATE=10000 TYPE=file ./run_benchmark buffer
-echo '[buffer rate=10000 type=file]'
-RATE=10000 TYPE=file_single ./run_benchmark buffer
+echo "[in_forward rate=${RATE1}]"
+RATE=${RATE1} ./run_benchmark in_forward
+echo "[in_forward rate=${RATE2}]"
+RATE=${RATE2} ./run_benchmark in_forward
+echo "[out_forward rate=${RATE1}]"
+RATE=${RATE1} ./run_benchmark out_forward
+echo '[out_forward rate=${RATE2}]'
+RATE=${RATE2} ./run_benchmark out_forward
 
-echo '[buffer rate=50000 type=memory]'
-RATE=50000 TYPE=file ./run_benchmark buffer
-echo '[buffer rate=50000 type=file_single]'
-RATE=50000 TYPE=file ./run_benchmark buffer
-echo '[buffer rate=50000 type=file]'
-RATE=50000 TYPE=file_single ./run_benchmark buffer
+echo '[buffer rate=${RATE1} type=memory]'
+RATE=${RATE1} TYPE=memory ./run_benchmark buffer
+echo '[buffer rate=${RATE1} type=file_single]'
+RATE=${RATE1} TYPE=file ./run_benchmark buffer
+echo '[buffer rate=${RATE1} type=file]'
+RATE=${RATE1} TYPE=file_single ./run_benchmark buffer
+
+echo '[buffer rate=${RATE2} type=memory]'
+RATE=${RATE2} TYPE=file ./run_benchmark buffer
+echo "[buffer rate=${RATE2} type=file_single]"
+RATE=${RATE2} TYPE=file ./run_benchmark buffer
+echo "[buffer rate=${RATE2} type=file]"
+RATE=${RATE2}=file_single ./run_benchmark buffer

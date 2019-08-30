@@ -16,3 +16,5 @@ services:
   receiver:
     build: receiver
     image: receiver:1
+    volumes:
+      - ./data/out_forward:/var/log/flunetd_stats

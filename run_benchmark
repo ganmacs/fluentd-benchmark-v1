@@ -3,7 +3,9 @@ set -e
 
 SED="sed"
 HEAD="head"
-DURATION=120
+DURATION=${DURATION:-120}
+NO_CACHE=${NO_CACHE:-false}
+
 
 [ "$(uname -s)" == "Darwin" ] && SED=gsed
 [ "$(uname -s)" == "Darwin" ] && HEAD=ghead
@@ -34,8 +36,9 @@ trap exithandler SIGTERM
 
 echo "Starting docker containers ..."
 
-docker-compose -f "${BENCHMARK}.yml" up --build > "./log/${BENCHMARK}.out" 2> "./log/${BENCHMARK}.err" &
+$NO_CACHE && echo "rebuilding docker image..." && docker-compose -f "${BENCHMARK}.yml" build --no-cache > /dev/null 2>&1
 
+docker-compose -f "${BENCHMARK}.yml" up >> "./log/${BENCHMARK}.out" 2> "./log/${BENCHMARK}.err" &
 echo "Start benchmark. Wait for ${DURATION} sec ..."
 sleep $DURATION
 
