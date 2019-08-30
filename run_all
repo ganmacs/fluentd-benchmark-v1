@@ -12,17 +12,17 @@ echo "[in_forward rate=${RATE2}]"
 RATE=${RATE2} ./run_benchmark in_forward
 echo "[out_forward rate=${RATE1}]"
 RATE=${RATE1} ./run_benchmark out_forward
-echo '[out_forward rate=${RATE2}]'
+echo "[out_forward rate=${RATE2}]"
 RATE=${RATE2} ./run_benchmark out_forward
 
-echo '[buffer rate=${RATE1} type=memory]'
+echo "[buffer rate=${RATE1} type=memory]"
 RATE=${RATE1} TYPE=memory ./run_benchmark buffer
-echo '[buffer rate=${RATE1} type=file_single]'
+echo "[buffer rate=${RATE1} type=file_single]"
 RATE=${RATE1} TYPE=file ./run_benchmark buffer
-echo '[buffer rate=${RATE1} type=file]'
+echo "[buffer rate=${RATE1} type=file]"
 RATE=${RATE1} TYPE=file_single ./run_benchmark buffer
 
-echo '[buffer rate=${RATE2} type=memory]'
+echo "[buffer rate=${RATE2} type=memory]"
 RATE=${RATE2} TYPE=file ./run_benchmark buffer
 echo "[buffer rate=${RATE2} type=file_single]"
 RATE=${RATE2} TYPE=file ./run_benchmark buffer

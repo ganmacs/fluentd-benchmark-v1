@@ -8,7 +8,6 @@ COPY Gemfile /app/
 RUN bundle install -j4 --path /app/vendor/bundle
 
 ARG ENTRYKIT_VERSION=0.4.0
-
 RUN curl -sSfLO https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \
   rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz && \

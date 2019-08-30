@@ -13,5 +13,6 @@ services:
     image: buffer:1
     environment:
       - TYPE
+      - RATE
     volumes:
       - ./data/buffer:/var/log/flunetd_stats

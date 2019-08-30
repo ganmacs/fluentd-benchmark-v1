@@ -1,6 +1,6 @@
 <source>
   @type flowcounter_simple2
-  dump_file_path '/var/log/flunetd_stats/receiver.json'
+  dump_file_path /var/log/flunetd_stats/receiver_{{ var "RATE" }}.json
   unit second
   port 24224
 </source>

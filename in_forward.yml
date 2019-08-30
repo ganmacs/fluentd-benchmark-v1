@@ -11,5 +11,7 @@ services:
   target:
     build: in_forward
     image: in_forward:1
+    environment:
+      - RATE
     volumes:
       - ./data/in_forward:/var/log/flunetd_stats
