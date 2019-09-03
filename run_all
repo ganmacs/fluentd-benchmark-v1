@@ -25,7 +25,7 @@ echo "[buffer rate=${RATE1} type=file]"
 RATE=${RATE1} TYPE=file_single ./run_benchmark buffer
 
 echo "[buffer rate=${RATE2} type=memory]"
-RATE=${RATE2} TYPE=file ./run_benchmark buffer
+RATE=${RATE2} TYPE=memory ./run_benchmark buffer
 echo "[buffer rate=${RATE2} type=file_single]"
 RATE=${RATE2} TYPE=file ./run_benchmark buffer
 echo "[buffer rate=${RATE2} type=file]"
