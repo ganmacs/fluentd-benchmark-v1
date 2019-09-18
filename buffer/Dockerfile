@@ -1,5 +1,6 @@
 FROM ruby:2.5
 
+RUN apt-get update -y && apt-get upgrade -y && apt-get -y install cmake gcc
 RUN gem update bundler
 
 RUN mkdir -p /app && mkdir -p /var/log/flunetd_stats

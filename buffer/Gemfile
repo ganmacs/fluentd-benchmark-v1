@@ -2,3 +2,4 @@ source 'https://rubygems.org'
 
 gem 'fluentd', github: 'fluent/fluentd'
 gem 'fluent-plugin-flowcounter-simple2', github: 'ganmacs/fluent-plugin-flowcounter-simple2'
+gem 'fluent-plugin-buffer-chunkio', github: 'ganmacs/fluent-plugin-buffer-chunkio', branch: 'impl'
